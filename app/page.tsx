@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'react';
 
 import { fetchScrapeData, fetchSearchData } from '@/api/query';
-import { ResultSection } from '@/component/common/ResultSection';
+import { ResultSection } from '@/component/common/result-section';
 import BaseHead from '@/component/layout/base-head';
 import BaseLayout from '@/component/layout/base-layout';
 import { Engine, Metadata } from '@/types/global';
@@ -33,12 +33,13 @@ export default function Home() {
     [activePortalTab],
   );
 
-  async function onClickRun() {
+  async function onClickRun(e?: React.FormEvent) {
+    if (e) e.preventDefault();
+
     const trimmed = value.trim();
+    if (!trimmed || loading) return;
+
     setErrorMsg(null);
-
-    if (!trimmed) return;
-
     setLoading(true);
 
     try {
@@ -46,7 +47,9 @@ export default function Home() {
         const result = await fetchSearchData(trimmed, engine);
         setSearchHistory(result);
       } else {
-        const requestUrl = `https://${trimmed}`;
+        const requestUrl = trimmed.startsWith('http')
+          ? trimmed
+          : `https://${trimmed}`;
         if (!trimmed.includes('.')) {
           throw new Error('올바른 도메인 형식을 입력하세요. (예: example.com)');
         }
@@ -67,8 +70,8 @@ export default function Home() {
 
   return (
     <BaseLayout>
-      <div className='mb-12 text-center text-4xl font-bold'>
-        <h1></h1>
+      <div className='mb-12 text-center text-4xl font-bold tracking-tight'>
+        <h1>What should I catch?</h1>
       </div>
       <BaseHead
         value={value}
@@ -82,6 +85,7 @@ export default function Home() {
         onClickRun={onClickRun}
         errorMsg={errorMsg}
       />
+
       <ResultSection
         activeTab={activeTab}
         loading={loading}

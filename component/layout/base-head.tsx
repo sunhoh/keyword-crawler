@@ -1,5 +1,6 @@
 import { ArrowRight } from 'lucide-react';
 
+import { MainAsciiLoading } from '@/component/common/main-loading';
 import { cn } from '@/libs/utils';
 
 interface BaseHeadProps {
@@ -37,6 +38,7 @@ export default function BaseHead({
 
   return (
     <>
+      <MainAsciiLoading />
       <div className='flex w-full flex-col items-center gap-4 overflow-hidden rounded-2xl border border-[#e5e7eb] bg-white py-4 shadow-md'>
         {/* URL Input Section */}
         <div className='relative flex w-full items-center gap-2 border-b border-gray-300 px-6 py-3'>

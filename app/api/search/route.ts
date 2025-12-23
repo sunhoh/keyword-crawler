@@ -67,6 +67,7 @@ async function handleNaverMap(keyword: string, limit: number) {
       : keyword;
 
     const targetUrl = `https://map.naver.com/p/search/${encodeURIComponent(cleanKeyword || keyword)}`;
+    console.log('targetUrltargetUrl', targetUrl);
 
     // 4. 페이지 이동 및 대기
     await page.goto(targetUrl, { waitUntil: 'networkidle', timeout: 30000 });

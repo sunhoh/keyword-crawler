@@ -2,21 +2,21 @@
 
 import { useEffect, useState } from 'react';
 
-import { ASCII_LOADING_FRAMES } from '@/constants/ascii.constants';
+import { ASCII_FRAMES } from '@/constants/ascii.constants';
 
-export const AsciiLoading = () => {
+export const MainAsciiLoading = () => {
   const [frameIndex, setFrameIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setFrameIndex(prev => (prev + 1) % ASCII_LOADING_FRAMES.length);
+      setFrameIndex(prev => (prev + 1) % ASCII_FRAMES.length);
     }, 150);
     return () => clearInterval(interval);
   }, []);
 
   return (
     <div
-      className='pointer-events-none flex items-center justify-center overflow-hidden select-none'
+      className='pointer-events-none flex h-20 items-center justify-center overflow-hidden select-none'
       style={{ zIndex: 10, backgroundColor: 'transparent' }}
     >
       <pre
@@ -27,7 +27,7 @@ export const AsciiLoading = () => {
           opacity: 0.8,
         }}
       >
-        {ASCII_LOADING_FRAMES[frameIndex]}
+        {ASCII_FRAMES[frameIndex]}
       </pre>
     </div>
   );

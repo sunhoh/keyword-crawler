@@ -4,7 +4,7 @@ import { AlertCircle, Loader2 } from 'lucide-react';
 import { useState } from 'react';
 
 import { fetchScrapeData } from '@/api/query';
-import { DataTable } from '@/component/common/DataTable';
+import { DataTable } from '@/component/common/data-table';
 import { JsonView } from '@/component/output/JsonView';
 import { DOMAIN } from '@/configs';
 import { HOSPITAL_COLUMNS } from '@/constants/search.constants';

@@ -35,10 +35,8 @@ export function DataTable<T extends Record<string, unknown>>({
     value: unknown,
     row: T,
   ): React.ReactNode => {
-    // value를 안전하게 처리
     const safeValue = value ?? '';
 
-    // 기본 렌더링
     switch (column.key) {
       case 'rank':
         return (

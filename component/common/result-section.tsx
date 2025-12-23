@@ -50,7 +50,12 @@ export function ResultSection({
     }
   };
 
-  if (loading) return <AsciiLoading />;
+  if (loading)
+    return (
+      <div className='mt-8'>
+        <AsciiLoading />
+      </div>
+    );
 
   return <div className='mt-8 flex w-full flex-col'>{renderContent()}</div>;
 }
